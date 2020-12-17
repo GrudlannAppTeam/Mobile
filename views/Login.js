@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, ImageBackground, TextInput } from 'react-native';
-
+import Button from '../components/Button/Button.js'
 import image from '../assets/home.png'
 
 export default function Login() {
@@ -26,6 +26,7 @@ export default function Login() {
           placeholder='Hasło'
           placeholderTextColor="#FFF"
         />
+        <Button>Zaloguj</Button>
       </ImageBackground>
     </View>
   );
