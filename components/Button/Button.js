@@ -1,33 +1,29 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { TouchableOpacity, Text, StyleSheet } from "react-native";
 
+const AppButton = ({ onPress, title = 'Buttons' }) => (
+    <TouchableOpacity onPress={onPress} style={styles.appButtonContainer}>
+        <Text style={styles.appButtonText}>{title}</Text>
+    </TouchableOpacity>
+);
 
+const styles = StyleSheet.create({
+    appButtonContainer: {
+        elevation: 3,
+        backgroundColor: "#8D4F1A",
+        color: '#000',
+        paddingVertical: 10,
+        paddingHorizontal: 12,
+        marginHorizontal: 30,
+        marginVertical: 10,
+    },
+    appButtonText: {
+        fontSize: 18,
+        color: "#fff",
+        fontWeight: "bold",
+        alignSelf: "center",
+        textTransform: "uppercase"
+    }
+});
 
-
-
-
-const propTypes = {
-    text: PropTypes.string,
-    onClick: PropTypes.func,
-    className: PropTypes.string,
-    outline: PropTypes.bool,
-    color: PropTypes.oneOf(['light', 'success', 'active']),
-    small: PropTypes.bool,
-};
-
-const Button = ({ text, onClick, className, outline, color, isLoading = false, type, small = false }) => {
-    return (
-        <button
-           
-            onClick={onClick}
-            disabled={isLoading}
-            type={type}
-        >
-            {isLoading ? <Spinner animation="border" /> : text}
-        </button>
-    );
-};
-
-Button.propTypes = propTypes;
-
-export default Button;
+export default AppButton;
