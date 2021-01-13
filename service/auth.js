@@ -7,9 +7,9 @@ export const login = async ({ email, password }) => {
             password: password
         });
 
-        return JSON.stringify(res.data.nick);
+        return res.data;
     } catch (err) {
-        alert('Niepoprawne dane   ');
+        return false;
     }
 
 };
