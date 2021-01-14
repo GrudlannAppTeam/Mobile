@@ -6,6 +6,7 @@ import Home from './views/Home';
 import UserProvider from './state/UserContext';
 import TastingRoomProvider from './state/TastingRoomContext';
 import TastingRoom from './views/TastingRoom';
+import Review from './views/ReviewForm';
 
 const Stack = createStackNavigator();
 
@@ -34,6 +35,11 @@ const App = () => {
                                 name="Tasting"
                                 component={TastingRoom}
                                 options={{ title: 'Tasting room', headerTitleAlign: 'center'}}
+                            />
+                             <Stack.Screen
+                                name="Review"
+                                component={Review}
+                                options={{ title: 'Review', headerTitleAlign: 'center'}}
                             />
                     </Stack.Navigator>
                 </NavigationContainer>

@@ -4,6 +4,8 @@ import image from '../assets/home.png'
 import AppButton from '../components/Button/Button';
 import { getTastingRoomById } from '../service/tastingRoom';
 import { UserContext } from '../state/UserContext'
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 export default function TastingRoom({ navigation }) {
     const [isLoading, setIsLoading] = useState(false);
@@ -25,6 +27,9 @@ export default function TastingRoom({ navigation }) {
 
     const handleClick = id => () => {
         console.log('Ocena piwa o id', id);
+        navigation.navigate('Review');
+         localStorage.setItem('beerId', id);
+         localStorage.setItem('token', user.token);
     };
 
     return isLoading ? (
@@ -36,7 +41,7 @@ export default function TastingRoom({ navigation }) {
                 <ImageBackground source={image} style={styles.image}>
                     <Text style={styles.text}>Oceń poniższe piwa</Text>
                     {
-                        user.tastingRoom.beers.map(beer => <AppButton disabled={true} key={beer.id} title={beer.name} onPress={handleClick(beer.id)}/>)
+                        user.tastingRoom.beers.map(beer => <AppButton disabled={false} key={beer.id} title={beer.name} onPress={handleClick(beer.id)}/>)
                     }
                 </ImageBackground>
             </View>
