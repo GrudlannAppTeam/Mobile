@@ -17,19 +17,27 @@ constructor(props){
         hide: true,
     };
 }
- handleClick = (e) => {
+ handleClick = answer => () => {
          this.setState({
              hide: false,
          });
          const data = {
              beerId: Number(this.state.beerId),
-             answerId: Number(e.target.value)
+             answerId: Number(answer)
          };
          console.log(data);
-        axios
-      .post('https://grudlann-app.herokuapp.com/api/reviews', data, { headers: { 'Authorization': `Bearer ${JSON.parse(localStorage.getItem('token'))}`,'Content-Type': 'application/json', 'Accept': '*/*' }})
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
+        fetch('https://grudlann-app.herokuapp.com/api/reviews', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                'Accept': '*/*',
+                'Content-Type': 'application/json',
+             },
+        body: JSON.stringify({
+            beerId: data.beerId,
+            answerId: data.answerId
+                 })
+});
         };
     
     render(){
@@ -38,7 +46,7 @@ constructor(props){
        this.state.hide ? (<View style={styles.container}>
             <Text style={styles.text}> {this.props.name}</Text>
             {this.props.answers.map(answer => 
-               <AppButton disabled={false} key={answer.lp} title={answer.name}  onPress={this.handleClick}/>
+               <AppButton disabled={false} key={answer.lp} value={answer.lp} title={answer.name}  onPress={this.handleClick(answer.lp)}/>
         )}
         </View>): null
     );
